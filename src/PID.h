@@ -17,6 +17,11 @@ public:
   double Ki;
   double Kd;
 
+  /*Twiddle parameters*/
+  double tolerance;
+    bool twiddle_on;
+    int N;
+
   /*
   * Constructor
   */
