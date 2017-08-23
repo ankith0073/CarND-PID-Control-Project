@@ -33,8 +33,11 @@ int main()
   uWS::Hub h;
 
   PID pid;
-  // TODO: Initialize the pid variable.
-
+  /*values set manually, referring to Viek yadavs PID https://github.com/vxy10/P4T2SCND_PIDControl/blob/master/CarND-PID-Control-Project_simple/src/main.cpp*/
+    float Kd = 0.225;
+    float Ki = 0.0004;
+    float Kp = 4;
+    pid.Init(Kd,Ki,Kp);
   h.onMessage([&pid](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, uWS::OpCode opCode) {
     // "42" at the start of the message means there's a websocket message event.
     // The 4 signifies a websocket message
@@ -57,6 +60,8 @@ int main()
           * NOTE: Feel free to play around with the throttle and speed. Maybe use
           * another PID controller to control the speed!
           */
+            pid.UpdateError(cte);
+            steer_value = -pid.Kd * pid.d_error - pid.Kp * pid.p_error - pid.Ki * pid.i_error;
           
           // DEBUG
           std::cout << "CTE: " << cte << " Steering Value: " << steer_value << std::endl;
