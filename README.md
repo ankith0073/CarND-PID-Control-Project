@@ -1,5 +1,24 @@
 # CarND-Controls-PID
-Self-Driving Car Engineer Nanodegree Program
+Self-Driving Car Engineer Nanodegree Program 
+
+The main aim of the project is to build a PID controller to give control commands to the car to steer itself through the track designed for behavioral cloning project.
+
+# Reflections
+P component(Proportional component): 
+
+The P component directly relates to the difference between the car's actual postion and the center of the lane also known as the cross track error of the car. The component turns in the opposite direction of the movement of the car. i.e If the car drifts to the right, it steers to the left and vice versa.
+
+D component(Differential component): 
+
+The steering of the car is damped in relation with the derivative of the cross track error. If the derivative is positive (i.e CTE decreased with time), then car steers less harder. If the derivative is negative (i.e CTE increasing with time), the car steers more harder. The D component helps to reduce the overshooting effect when only P component is used.
+
+I component(Integral component): 
+
+The I component is useful in taking away the constant offset of the car. The integral component accumulates the constant offset over time and helps in steering the car harder towards the center of the lane.
+
+Choosing Final parameters:-
+
+ The final parameters is chosen using either of the methods Twiddle, Stochastic gradient descent, Neural network based hyperparameter tuning, Old school hand tuning. Old school hand tuning method was chosen as it justifies using a complex controller than spending computations on tuning an old school controller.
 
 ---
 
